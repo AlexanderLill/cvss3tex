@@ -41,8 +41,10 @@ You can use `\cvssBaseScore{AV}{AC}{PR}{UI}{S}{C}{I}{A}` and `\cvssBaseScorePret
 
 ## Examples
 
+```
 \cvssBaseScorePretty{N}{L}{N}{N}{U}{L}{L}{L}
 \cvssBaseScorePretty{N}{L}{N}{N}{C}{L}{L}{L}
+```
 
 ## Testing
 
