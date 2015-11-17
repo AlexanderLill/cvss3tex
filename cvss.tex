@@ -243,18 +243,18 @@
     % #6 Confidentiality Impact %High H, Low L, None N
     % #7 Integrity Impact %High H, Low L, None N
     % #8 Availability Impact %High H, Low L, None N
-
+    %
     %\calcAndParseIscBase}[3]{
     % #1 Confidentiality Impact
     % #2 Integrity Impact
     % #3 Availability Impact
     \calcAndParseIscBase{#6}{#7}{#8}%
-
+    %
     %\calcIsc}[2]{%
     % #1 = Scope
     % #2 = ICSbase
     \calcIsc{#5}{\calcIscBaseResult}%
-
+    %
     %\calcAndParseExploitability}[5]{%
     % #1 Attack Vector
     % #2 Attack Complexity
@@ -262,7 +262,7 @@
     % #4 User Interaction
     % #5 Scope
     \calcAndParseExploitability{#1}{#2}{#3}{#4}{#5}%
-
+    %
     % If (Impact sub score =< 0) 0 else,
     \ifnum\checkSmallerOrEquals{\calcIscResult}{0}=1
         0%
@@ -280,9 +280,10 @@
 }
 
 \newcommand{\cvssBaseScorePretty}[8]{%
-    \noindent
     \dumpSettingsShort{#1}{#2}{#3}{#4}{#5}{#6}{#7}{#8}%
-    \cvssBaseScore{#1}{#2}{#3}{#4}{#5}{#6}{#7}{#8}%
+    ~~
+    \textbf{Score:}
+    \cvssBaseScore{#1}{#2}{#3}{#4}{#5}{#6}{#7}{#8}
 }
 
 \newcommand{\cvssTest}{%
@@ -293,20 +294,25 @@
 
 \newcommand{\testParsing}{%
     \noindent%
+    %
     \parseAttackVector{N} \\%
     \parseAttackVector{A} \\%
     \parseAttackVector{L} \\%
     \parseAttackVector{P} \\%
+    %
     \parseAttackComplexity{L} \\%
     \parseAttackComplexity{H} \\%
+    %
     \parsePrivilegesRequired{N}{U} \\%
     \parsePrivilegesRequired{L}{U} \\%
     \parsePrivilegesRequired{H}{U} \\%
     \parsePrivilegesRequired{N}{C} \\%
     \parsePrivilegesRequired{L}{C} \\%
     \parsePrivilegesRequired{H}{C} \\%
+    %
     \parseUserInteraction{N} \\%
     \parseUserInteraction{R} \\%
+    %
     \parseCIA{H} \\%
     \parseCIA{L} \\%
     \parseCIA{N} \\%
@@ -314,70 +320,70 @@
 
 \newcommand{\testCalculations}{%
     \noindent%
-
+    %
     Should be 0.875:
     \calcIscBase{0.5}{0.5}{0.5}%
     \calcIscBaseResult \\%
-
+    %
     Should be 0.6568:
     \calcAndParseIscBase{N}{L}{H}%
     \calcIscBaseResult \\%
-
+    %
     Should be 64.2:
     \calcIsc{U}{10}%
     \calcIscResult \\%
-
+    %
     Should be 4.9015704164:
     \calcIsc{C}{1}%
     \calcIscResult \\%
-
+    %
     Should be 0.51375:
     \calcExploitability{0.5}{0.5}{0.5}{0.5}%
     \calcExploitabilityResult \\%
-
+    %
     Should be 2.83525473:
     \calcAndParseExploitability{N}{L}{L}{N}{U}%
     \calcExploitabilityResult \\%
-
+    %
     Should be 3.10963422:
     \calcAndParseExploitability{N}{L}{L}{N}{C}%
     \calcExploitabilityResult \\%
-
+    %
     Should be 4.1:
     \ceil{4.02}%
     \ceilResult \\%
-
+    %
     Should be 4:
     \ceil{4.0}%
     \ceilResult \\%
-
+    %
     Should be 4:
     \ceil{3.91}%
     \ceilResult \\%
-
+    %
     Should be 2:
     \ceil{2}%
     \ceilResult \\%
-
+    %
     Should be 0.3:
     \ceil{0.24}%
     \ceilResult \\%
-
+    %
     Should be 0.3:
     \ceil{0.29}%
     \ceilResult \\%
-
+    %
     Should be -0.2:
     \ceil{-0.27}%
     \ceilResult \\%
-
+    %
     Should be -0.2:
     \ceil{-0.2}%
     \ceilResult \\%
-
+    %
     Should be 7.3:
     \cvssBaseScore{N}{L}{N}{N}{U}{L}{L}{L}%
-
+    %
     Should be 8.3:
     \cvssBaseScore{N}{L}{N}{N}{C}{L}{L}{L}%
 }
