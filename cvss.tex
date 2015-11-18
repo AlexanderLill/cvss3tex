@@ -194,6 +194,7 @@
     \getMinimum{\calculateCVSSScopeUnchangedTempSum}{10}%
     \ceil{\getMinimumResult}%
     \FPeval{calculateCVSSScopeUnchangedResult}{ceilResult}%
+    \FPclip\calculateCVSSScopeUnchangedResult\calculateCVSSScopeUnchangedResult%
 }
 
 \newcommand{\calculateCVSSScopeChanged}[2]{%
@@ -204,6 +205,7 @@
     \getMinimum{\calculateCVSSScopeChangedTempSum}{10}%
     \ceil{\getMinimumResult}%
     \FPeval{calculateCVSSScopeChangedResult}{ceilResult}%
+    \FPclip\calculateCVSSScopeChangedResult\calculateCVSSScopeChangedResult%
 }
 
 \newcommand{\getMinimum}[2]{%
@@ -284,8 +286,7 @@
 \newcommand{\cvssBaseScorePretty}[8]{%
     \dumpSettingsShort{#1}{#2}{#3}{#4}{#5}{#6}{#7}{#8}%
     ~~
-    \textbf{Score:}
-    \cvssBaseScore{#1}{#2}{#3}{#4}{#5}{#6}{#7}{#8}
+    \formatDump{Score}{\cvssBaseScore{#1}{#2}{#3}{#4}{#5}{#6}{#7}{#8}}
 }
 
 \newcommand{\cvssTest}{%
@@ -425,5 +426,5 @@
 }
 
 \newcommand{\formatDump}[2]{%
-    \textbf{#1:} #2~%
+    \textbf{#1:}\enskip{}#2\enskip%
 }

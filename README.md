@@ -1,6 +1,7 @@
 # cvss3tex
 Latex Implementation for CVSSv3
 
+
 ## Info
 
 This LaTeX-Script calculates the CVSSv3 Base Score (see [https://www.first.org/cvss/specification-document]) given the necessary 8 parameters in the following format:
@@ -39,16 +40,27 @@ This LaTeX-Script calculates the CVSSv3 Base Score (see [https://www.first.org/c
 
 You can use `\cvssBaseScore{AV}{AC}{PR}{UI}{S}{C}{I}{A}` and `\cvssBaseScorePretty{AV}{AC}{PR}{UI}{S}{C}{I}{A}` to calculate the CVSSv3 Base Score either without or with the given parameters. The possible values for the parameters are shown in the "Info" section.
 
+
 ## Examples
 
 ```
 \cvssBaseScorePretty{N}{L}{N}{N}{U}{L}{L}{L}
 \cvssBaseScorePretty{N}{L}{N}{N}{C}{L}{L}{L}
+\cvssBaseScore{N}{L}{N}{N}{C}{L}{L}{L}
 ```
+
+Output:
+```
+AV: N AC: L PR: N UI: N S: U C: L I: L A: L  Score: 7.3
+AV: N AC: L PR: N UI: N S: C C: L I: L A: L  Score: 8.3
+8.3
+```
+
 
 ## Testing
 
-The formulas and the parsing can be tested by executing the command `\test`
+The formulas and the parsing can be tested by executing the command `\cvssTest`
+
 
 ## Licensing
 
