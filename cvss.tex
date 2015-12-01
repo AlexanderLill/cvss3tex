@@ -18,7 +18,7 @@
         \AVLvalue%
     \else\ifnum\pdfstrcmp{#1}{P}=0
         \AVPvalue%
-    \else
+    \else%
         InvalidAttackVector%
     \fi\fi\fi\fi%
 }
@@ -32,7 +32,7 @@
         \ACLvalue%
     \else\ifnum\pdfstrcmp{#1}{H}=0
         \ACHvalue%
-    \else
+    \else%
         InvalidAttackComplexity%
     \fi\fi%
 }
@@ -51,7 +51,7 @@
         \parsePrivilegesRequiredScopeUnchanged{#1}%
     \else\ifnum\pdfstrcmp{#2}{C}=0
         \parsePrivilegesRequiredScopeChanged{#1}%
-    \else
+    \else%
         InvalidPrivilegesRequired%
     \fi\fi%
 }
@@ -63,7 +63,7 @@
         \PRLvalue%
     \else\ifnum\pdfstrcmp{#1}{H}=0
         \PRHvalue%
-    \else
+    \else%
         InvalidPrivilegesRequiredScopeUnchanged%
     \fi\fi\fi%
 }
@@ -75,7 +75,7 @@
         \PRLSCvalue%
     \else\ifnum\pdfstrcmp{#1}{H}=0
         \PRHSCvalue%
-    \else
+    \else%
         InvalidPrivilegesRequiredScopeChanged%
     \fi\fi\fi%
 }
@@ -144,7 +144,7 @@
         \calcIscScopeUnchanged{#2}%
     \else\ifnum\pdfstrcmp{#1}{C}=0
         \calcIscScopeChanged{#2}%
-    \else
+    \else%
         InvalidPrivilegesRequired%
     \fi\fi%
 }
@@ -170,7 +170,7 @@
     % #4 User Interaction
     % 8.22 × AttackVector × AttackComplexity × PrivilegeRequired × UserInteraction
     \FPeval{calcExploitabilityResult}{ 8.22 * (#1) * (#2) * (#3) * (#4) }%
-    \FPclip\calcExploitabilityResult\calcExploitabilityResult
+    \FPclip\calcExploitabilityResult\calcExploitabilityResult%
 }%
 
 \newcommand{\calcAndParseExploitability}[5]{%
@@ -267,15 +267,17 @@
     \ifnum\checkSmallerOrEquals{\calcIscResult}{0}=1
         0%
     \else
-        \ifnum\pdfstrcmp{#5}{U}=0
+        \ifnum\pdfstrcmp{#5}{U}=0%
             \calculateCVSSScopeUnchanged{\calcIscResult}{\calcExploitabilityResult}%
             \calculateCVSSScopeUnchangedResult%
-        \else\ifnum\pdfstrcmp{#5}{C}=0
-            \calculateCVSSScopeChanged{\calcIscResult}{\calcExploitabilityResult}%
-            \calculateCVSSScopeChangedResult%
-        \else
-            InvalidScope%
-        \fi\fi%
+        \else%
+            \ifnum\pdfstrcmp{#5}{C}=0%
+                \calculateCVSSScopeUnchanged{\calcIscResult}{\calcExploitabilityResult}%
+                \calculateCVSSScopeUnchangedResult%
+            \else%
+                InvalidScope%
+            \fi%
+        \fi%
     \fi%
 }
 
