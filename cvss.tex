@@ -89,7 +89,7 @@
         \UINvalue%
     \else\ifnum\pdfstrcmp{#1}{R}=0
         \UIRvalue%
-    \else
+    \else%
         InvalidAttackVector%
     \fi\fi%
 }
@@ -114,7 +114,7 @@
         \CIALvalue%
     \else\ifnum\pdfstrcmp{#1}{N}=0
         \CIANvalue%
-    \else
+    \else%
         InvalidCIA%
     \fi\fi\fi%
 }
@@ -194,7 +194,6 @@
     \getMinimum{\calculateCVSSScopeUnchangedTempSum}{10}%
     \ceil{\getMinimumResult}%
     \FPeval{calculateCVSSScopeUnchangedResult}{ceilResult}%
-    \FPclip\calculateCVSSScopeUnchangedResult\calculateCVSSScopeUnchangedResult%
 }
 
 \newcommand{\calculateCVSSScopeChanged}[2]{%
@@ -205,7 +204,6 @@
     \getMinimum{\calculateCVSSScopeChangedTempSum}{10}%
     \ceil{\getMinimumResult}%
     \FPeval{calculateCVSSScopeChangedResult}{ceilResult}%
-    \FPclip\calculateCVSSScopeChangedResult\calculateCVSSScopeChangedResult%
 }
 
 \newcommand{\getMinimum}[2]{%
@@ -385,7 +383,7 @@
     \ceilResult \\%
     %
     Should be 7.3:
-    \cvssBaseScore{N}{L}{N}{N}{U}{L}{L}{L}%
+    \cvssBaseScore{N}{L}{N}{N}{U}{L}{L}{L} \\%
     %
     Should be 8.3:
     \cvssBaseScore{N}{L}{N}{N}{C}{L}{L}{L}%
