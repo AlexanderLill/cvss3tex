@@ -227,11 +227,11 @@
     \FPeval{\cutNumber}{trunc((initialNumber), 0)}%
     \ifnum\checkSmallerOrEquals{\initialNumber}{\cutNumber}=1
         \FPeval{\ceilResult}{(cutNumber) / 10}%
-        \FPclip\ceilResult\ceilResult%
-    \else
+    \else%
         \FPeval{\ceilResult}{((cutNumber) + 1) / 10}%
-        \FPclip\ceilResult\ceilResult%
-    \fi
+    \fi%
+    \FPclip\ceilResult\ceilResult%
+    \FPtrunc{\ceilResult}{\ceilResult}{1}%
 }
 
 \newcommand{\cvssBaseScore}[8]{%
