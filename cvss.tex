@@ -272,8 +272,8 @@
             \calculateCVSSScopeUnchangedResult%
         \else%
             \ifnum\pdfstrcmp{#5}{C}=0%
-                \calculateCVSSScopeUnchanged{\calcIscResult}{\calcExploitabilityResult}%
-                \calculateCVSSScopeUnchangedResult%
+                \calculateCVSSScopeChanged{\calcIscResult}{\calcExploitabilityResult}%
+                \calculateCVSSScopeChangedResult%
             \else%
                 InvalidScope%
             \fi%
